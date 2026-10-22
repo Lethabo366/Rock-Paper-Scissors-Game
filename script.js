@@ -1,6 +1,3 @@
-// alert("Welcome to Rock, Paper, Scissors! You will be playing a computer player to win 2 of 3 rounds. wins will be displayed in the console. Good luck!");
-
-
 let userResponse;
 
 let userWins = 0;
