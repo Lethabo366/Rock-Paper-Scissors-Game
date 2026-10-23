@@ -1,44 +1,72 @@
-let userResponse;
-
 let userWins = 0;
 let computerWins = 0;
-rounds = 0;
 
-while(userResponse !== "rock" && userResponse !== "paper" && userResponse !== "scissors"){
-  userResponse = (prompt("Please enter your choice: Rock, Paper, or Scissors.")).toLowerCase();
+const game = () => {
+    userWins = 0;
+    computerWins = 0;
 
-  if(userResponse !== "rock" && userResponse !== "paper" && userResponse !== "scissors"){
-    alert("Invalid input. Please enter Rock, Paper, or Scissors.");
-  }
-}
+    while(userWins < 3 && computerWins < 3){
+        let userResponse;
 
- let computerResponse = computerPlayer();
+        while(true){
+            const input = prompt("Please enter your choice: Rock, Paper, or Scissors.");
 
+            if(input === null){
+                return;
+            }
+
+            userResponse = input.trim().toLowerCase();
+
+            if(userResponse === "rock" || userResponse === "paper" || userResponse === "scissors"){
+                break;
+            }
+
+            alert("Invalid input. Please enter Rock, Paper, or Scissors.");
+        }
+
+        const computerResponse = computerPlay();
+        const result = playRound(userResponse, computerResponse);
+        console.log(result.message);
+
+        if(result.winner === "player"){
+            userWins++;
+        } else if(result.winner === "computer"){
+            computerWins++;
+        }
+
+        console.log(`Score - You: ${userWins}, Computer: ${computerWins}`);
+    }
+
+    console.log(userWins === 3 ? "You win the game!" : "The computer wins the game.");
+};
 
 const playRound = (userResponse,computerResponse) => {
-   
+    const capitalize = choice => choice[0].toUpperCase() + choice.slice(1);
+
     if(userResponse === computerResponse){
-
-    } else if(userResponse === "rock" && computerResponse === "scissors" || 
-                userResponse === "paper" && computerResponse === "rock" ||
-                userResponse === "scissors" && computerResponse === "paper"){
-
-                return`computer chose ${computerResponse.toCapitalize()}. 
-                ${userResponse.toCapitalize()} beats ${computerResponse.toCapitalize()}. You win this Round!`;
-
-    } else if (userResponse === "rock" && computerResponse === "paper" ||
-                userResponse === "paper" && computerResponse === "scissors" ||
-                userResponse === "scissors" && computerResponse === "rock"){
-
-                return`computer chose ${computerResponse.toCapitalize()}.
-                 ${computerResponse.toCapitalize()} beats ${userResponse.toCapitalize()}. You lose this Round! `;
-    } else {
-        console.log("Error");
+        return {
+            winner: "draw",
+            message: `It's a draw! You both chose ${capitalize(computerResponse)}.`
+        };
     }
-}
+
+    if(userResponse === "rock" && computerResponse === "scissors" ||
+       userResponse === "paper" && computerResponse === "rock" ||
+       userResponse === "scissors" && computerResponse === "paper"){
+        return {
+            winner: "player",
+            message: `Computer chose ${capitalize(computerResponse)}. ${capitalize(userResponse)} beats ${capitalize(computerResponse)}. You win this round!`
+        };
+    }
+
+    return {
+        winner: "computer",
+        message: `Computer chose ${capitalize(computerResponse)}. ${capitalize(computerResponse)} beats ${capitalize(userResponse)}. You lose this round!`
+    };
+};
 
 
-const computerPlayer = () => {
+function computerPlay() {
 
     let randomNumber = Math.floor(Math.random()*3);
 
@@ -58,3 +86,5 @@ const computerPlayer = () => {
     }
 
 }
+
+game();
