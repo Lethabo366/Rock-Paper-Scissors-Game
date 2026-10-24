@@ -1,0 +1,11 @@
+/* Game Instructions */
+
+.game-instructions {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+    text-align: center;
+}
+ 
+.game-instructions ul {
+  list-style: none;
+}

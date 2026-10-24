@@ -3,6 +3,10 @@ let computerWins = 0;
 const targetScore = 3;
 const choices = ["rock", "paper", "scissors"];
 
+/* game function manages the flow of the Rock, Paper, Scissors game. It keeps track of the scores and 
+ * continues to prompt the user for their choice until either the user or the computer reaches the target score. 
+ * It also handles user cancellation and displays the final result of the game.*/
+
 const game = () => {
   userWins = 0;
   computerWins = 0;
@@ -36,6 +40,9 @@ const game = () => {
   );
 };
 
+/* playRound function determines the winner of a round based on the user's and computer's choices. 
+ * It returns an object containing the winner and a message describing the outcome.*/
+
 const playRound = (userResponse, computerResponse) => {
   const capitalize = (choice) => choice[0].toUpperCase() + choice.slice(1);
 
@@ -63,12 +70,16 @@ const playRound = (userResponse, computerResponse) => {
   };
 };
 
+// computerPlay function randomly selects a choice for the computer from the choices array.
+
 function computerPlay() {
   const randomIndex = Math.floor(Math.random() * choices.length);
   return choices[randomIndex];
 }
 
-//getPlayerChoice function prompts the user for their choice and validates the input. It continues to prompt until a valid choice is made or the user cancels the prompt.
+/* getPlayerChoice function prompts the user for their choice and validates the input. 
+ * It continues to prompt until a valid choice is made or the user cancels the prompt.*/
+
 function getPlayerChoice() {
   while (true) {
     const input = prompt("Please enter your choice: Rock, Paper, or Scissors.");
@@ -86,6 +97,8 @@ function getPlayerChoice() {
     alert("Invalid input. Please enter Rock, Paper, or Scissors.");
   }
 }
+
+// showInstructions function displays the game instructions in an alert box when the game starts.
 
 function showInstructions() {
   alert(
@@ -113,4 +126,5 @@ function showInstructions() {
       "Click OK to start!",
   );
 }
+showInstructions();
 game();
