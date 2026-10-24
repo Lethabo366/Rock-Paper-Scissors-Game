@@ -3,15 +3,14 @@ let computerWins = 0;
 const targetScore = 3;
 const choices = ["rock", "paper", "scissors"];
 
-/* game function manages the flow of the Rock, Paper, Scissors game. It keeps track of the scores and 
- * continues to prompt the user for their choice until either the user or the computer reaches the target score. 
+/* game function manages the flow of the Rock, Paper, Scissors game. It keeps track of the scores and
+ * continues to prompt the user for their choice until either the user or the computer reaches the target score.
  * It also handles user cancellation and displays the final result of the game.*/
 
 const game = () => {
-  userWins = 0;
-  computerWins = 0;
-
+  let roundNumber = 0;
   while (userWins < targetScore && computerWins < targetScore) {
+    roundNumber++;
     const userResponse = getPlayerChoice();
 
     if (userResponse === null) {
@@ -31,16 +30,28 @@ const game = () => {
     }
 
     console.log(`Score - You: ${userWins}, Computer: ${computerWins}`);
+    // Display the result and current score in an alert box
+    alert(
+      `Round ${roundNumber}` +
+        `\n\n` +
+        result.message +
+        `\n\nScore - You: ${userWins}, Computer: ${computerWins}`,
+    );
   }
-
+  const finalScoreMessage = `Final Score - You: ${userWins}, Computer: ${computerWins}`;
   console.log(
-    userWins === targetScore
-      ? "You win the game!"
-      : "The computer wins the game.",
+    finalScoreMessage +
+      `\n\n${userWins === targetScore ? "Congratulations! You won the game!" : "The computer won the game. Better luck next time!"}`,
+  );
+  // Display the final result in an alert box
+  alert(
+    `\n\nYou played ${roundNumber} rounds.\n\n` +
+      finalScoreMessage +
+      `\n\n${userWins === targetScore ? "Congratulations! You won the game!" : "The computer won the game. Better luck next time!"}`,
   );
 };
 
-/* playRound function determines the winner of a round based on the user's and computer's choices. 
+/* playRound function determines the winner of a round based on the user's and computer's choices.
  * It returns an object containing the winner and a message describing the outcome.*/
 
 const playRound = (userResponse, computerResponse) => {
@@ -77,7 +88,7 @@ function computerPlay() {
   return choices[randomIndex];
 }
 
-/* getPlayerChoice function prompts the user for their choice and validates the input. 
+/* getPlayerChoice function prompts the user for their choice and validates the input.
  * It continues to prompt until a valid choice is made or the user cancels the prompt.*/
 
 function getPlayerChoice() {
