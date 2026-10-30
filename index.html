@@ -2,9 +2,35 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Rock,Paper,Scissors</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Rock Paper Scissors | UI</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
   </head>
-  <body></body>
-  <script src="script.js"></script>
+  <body>
+    <main class="app">
+      <p class="eyebrow">WARM-UP ASSIGNMENT</p>
+      <h1>Rock · Paper · Scissors</h1>
+      <p>
+        Defeat the evil AI! First to <strong>5 points</strong> wins. Draws award
+        no points.
+      </p>
+      <div class="scoreboard" aria-label="Scoreboard">
+        <div><span>You</span><strong id="player-score">0</strong></div>
+        <div><span>Computer</span><strong id="computer-score">0</strong></div>
+      </div>
+      <p id="status" role="status" aria-live="polite">
+        Choose your move to start.
+      </p>
+      <div class="choices" aria-label="Choose your move">
+        <button type="button" data-choice="rock">🪨 Rock</button
+        ><button type="button" data-choice="paper">📄 Paper</button
+        ><button type="button" data-choice="scissors">✂️ Scissors</button>
+      </div>
+      <div class="result" id="results" aria-live="polite">
+        <p>Your selections and results will appear here.</p>
+      </div>
+      <button id="restart" class="secondary" type="button">Restart game</button>
+    </main>
+  </body>
 </html>
